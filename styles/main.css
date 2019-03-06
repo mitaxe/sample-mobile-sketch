@@ -1,0 +1,35 @@
+.container {
+    width: 600px;
+    height: 300px;
+    margin-left: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.draw {
+    width: 90%;
+    border: 1px solid;
+}
+
+#wall > img, #door > img, #hand > img {
+    width: 16px;
+    height: 16px;
+}
+
+.panel {
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 40px;
+    min-height: 100px;
+    border: 1px solid;
+    padding: 6px;
+    box-sizing: border-box;
+}
+
+li {
+    cursor: pointer;
+    text-align: center;
+}
