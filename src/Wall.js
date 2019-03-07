@@ -39,6 +39,8 @@ class Wall {
       stroke: '#262626'
     })
     line.setControlsVisibility(commonControls)
+    // line.lockMovementX = true
+    // line.lockMovementY = true
     canvas.add(line)
 
     setTimeout(() => this.circles.forEach(circle => canvas.remove(circle)), 500)

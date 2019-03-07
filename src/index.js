@@ -3,10 +3,14 @@ import Wall from './Wall'
 
 const wallDoc = document.getElementById('wall')
 const handDoc = document.getElementById('hand')
+const undoDoc = document.getElementById('undo')
+const redoDoc = document.getElementById('redo')
 
 canvas.setWidth(canvasWidth)
 canvas.setHeight(canvasHeight)
 
+let isRedoing = false
+let history = []
 const toolsPanel = {
   hand: false,
   wall: true,
@@ -40,6 +44,26 @@ function onCanvasClick (e) {
 wallDoc.addEventListener('click', onWallClick)
 handDoc.addEventListener('click', onHandClick)
 canvas.on('mouse:down', onCanvasClick)
+canvas.on('object:added', function(){
+  if(!isRedoing){
+    history = []
+  }
+  isRedoing = false;
+})
+undoDoc.addEventListener('click', () => {
+  Wall.clear()
+  if(canvas._objects.length > 1){
+    history.push(canvas._objects.pop());
+    canvas.renderAll()
+  }
+})
+redoDoc.addEventListener('click', () => {
+  Wall.clear()
+  if(history.length > 0){
+    isRedoing = true;
+    canvas.add(history.pop())
+  }
+})
 
 function drawGrid () {
   let horizontal = []
